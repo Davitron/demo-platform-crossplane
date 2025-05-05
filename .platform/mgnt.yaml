@@ -9,3 +9,7 @@ crossplane:
                 values:
                   - on-demand
                   - spot
+
+
+aws:
+  roleArn: arn:aws:iam::286747865976:role/crossplane-role-management
