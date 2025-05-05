@@ -1,0 +1,3 @@
+crossplane:
+  args:
+    - --poll-interval=10s
