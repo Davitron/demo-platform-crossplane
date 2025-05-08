@@ -1,0 +1,8 @@
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: kcl-function
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  package: xpkg.crossplane.io/crossplane-contrib/function-kcl:v0.11.4
