@@ -1,0 +1,7 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Configuration
+metadata:
+  name: configuration-onboardingclaim
+  annotations:
+spec:
+  package: ghcr.io/davitron/demo-platform-onboarding:v0.1.7
