@@ -1,3 +1,7 @@
 crossplane:
   args:
     - --poll-interval=10s
+
+extraRBAC:
+  argocd:
+    enabled: false

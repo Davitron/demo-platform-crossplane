@@ -1,0 +1,32 @@
+{{- if .Values.extraRBAC.argocd.enabled }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: crossplane-argocd-permissions
+rules:
+  - apiGroups:
+      - "argoproj.io"
+    resources:
+      - "*"
+    verbs:
+      - "get"
+      - "list"
+      - "watch"
+      - "create"
+      - "update"
+      - "patch"
+      - "delete"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: crossplane-argocd-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: crossplane-argocd-permissions
+subjects:
+  - kind: ServiceAccount
+    name: crossplane
+    namespace: crossplane
+{{- end }}

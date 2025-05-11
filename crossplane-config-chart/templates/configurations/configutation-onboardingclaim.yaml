@@ -4,4 +4,4 @@ metadata:
   name: configuration-onboardingclaim
   annotations:
 spec:
-  package: ghcr.io/davitron/demo-platform-onboarding:v0.1.7
+  package: ghcr.io/davitron/demo-platform-onboarding:v0.1.24
