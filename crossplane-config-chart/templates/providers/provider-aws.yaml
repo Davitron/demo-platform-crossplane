@@ -8,7 +8,7 @@ spec:
   serviceAccountTemplate:
     metadata:
       annotations:
-        eks.amazonaws.com/role-arn: {{ .Values.aws.roleArn }}
+        eks.amazonaws.com/role-arn: {{ .Values.globals.crossplaneIAMRole }}
 ---
 
 apiVersion: pkg.crossplane.io/v1
