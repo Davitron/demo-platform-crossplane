@@ -14,6 +14,20 @@ spec:
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
+  name: provider-aws-secretsmanager
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-secretsmanager:v1.21.1
+  runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
+    name: provider-aws
+---
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
   name: provider-aws-ec2
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -39,6 +53,7 @@ spec:
     name: provider-aws
 
 ---
+
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -52,8 +67,8 @@ spec:
     kind: DeploymentRuntimeConfig
     name: provider-aws
 
-
 ---
+
 apiVersion: aws.upbound.io/v1beta1
 kind: ProviderConfig
 metadata:
