@@ -1,30 +1,3 @@
-apiVersion: pkg.crossplane.io/v1beta1
-kind: DeploymentRuntimeConfig
-metadata:
-  name: provider-aws
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-spec:     
-  serviceAccountTemplate:
-    metadata:
-      annotations:
-        eks.amazonaws.com/role-arn: {{ .Values.globals.crossplaneIAMRole }}
----
-
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-secretsmanager
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-spec:
-  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-secretsmanager:v1.21.1
-  runtimeConfigRef:
-    apiVersion: pkg.crossplane.io/v1beta1
-    kind: DeploymentRuntimeConfig
-    name: provider-aws
----
-
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
@@ -32,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-ec2:v1.21.1
+  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-ec2:{{ .Values.provider.aws.ec2.version }}
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
@@ -46,7 +19,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-eks:v1.21.1
+  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-eks:{{ .Values.provider.aws.eks.version }}
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
@@ -61,7 +34,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-iam:v1.21.1
+  package: xpkg.crossplane.io/crossplane-contrib/provider-aws-iam:{{ .Values.provider.aws.iam.version }}
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
@@ -77,4 +50,8 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   credentials:
-    source: IRSA
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-creds
+      key: creds

@@ -4,5 +4,5 @@ version: 1.0.0
 
 dependencies:
   - name: crossplane
-    version: "1.19.1"
+    version: "2.1.4"
     repository: "https://charts.crossplane.io/stable"

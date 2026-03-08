@@ -3,4 +3,4 @@ kind: Function
 metadata:
   name: function-environment-config
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/function-environment-configs:v0.4.0
+  package: xpkg.upbound.io/crossplane-contrib/function-environment-configs:v0.6.0

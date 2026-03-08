@@ -1,7 +1,8 @@
-crossplane:
-  args:
-    - --poll-interval=10s
-
-extraRBAC:
-  argocd:
-    enabled: false
+provider:
+  aws:
+    ec2:
+      version: "v2.4.0"
+    eks:
+      version: "v2.4.0"
+    iam:
+      version: "v2.4.0"
