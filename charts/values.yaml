@@ -6,3 +6,5 @@ provider:
       version: "v2.4.0"
     iam:
       version: "v2.4.0"
+    kms:
+      version: "v2.4.0"
